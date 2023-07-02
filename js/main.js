@@ -94,6 +94,9 @@ $(document).ready(function () {
     }
   });
 
+  if ($(window).width() < 768) {
+    $('.gallery_block>div:nth-child(1) a').after($('.gallery_block>div:last-child a:last-child'))
+  }
 
 /////////////////////////////////////////////////////////////////////////
 
