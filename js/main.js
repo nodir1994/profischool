@@ -113,11 +113,6 @@ $(document).ready(function () {
     return false;
   });
  
- 
-  $('.btn_favourite').on('click', function (e) {
-    e.preventDefault()
-    $(this).toggleClass('active')
-  })
 
   $('.language_block').on('click', function (e) {
     e.preventDefault()
@@ -161,29 +156,19 @@ $(document).ready(function () {
     $('body').addClass('opened')
   })
 
-  $(document).on('click', '.toggle_password span', function () {
-    $(this).parent().toggleClass('show')
-    var x = document.getElementById("myInput");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  })
-
   $(document).on('click', '.mobile__menu .close', function () {
     $('.mobile__menu').removeClass('active')
     $('body').removeClass('opened')
   })
 
-  if ($(window).width() < 1024) {
-    $('section.home_faculty .right__faculty .swiper-container').after($('section.home_faculty .all_faculty '))
-  }
+  // if ($(window).width() < 1024) {
+  //   $('section.home_faculty .right__faculty .swiper-container').after($('section.home_faculty .all_faculty '))
+  // }
 
-  $(document).on('click', '.home_faculty ul li a', function (e) {
-    e.preventDefault();
-    $('.home_faculty ul li a').removeClass('active')
-    $(this).addClass('active')
-  })
+  // $(document).on('click', '.home_faculty ul li a', function (e) {
+  //   e.preventDefault();
+  //   $('.home_faculty ul li a').removeClass('active')
+  //   $(this).addClass('active')
+  // })
 
 });
