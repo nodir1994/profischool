@@ -15,7 +15,7 @@ $(document).ready(function () {
       767: {
         slidesPerView: 1
       },
-     
+
       1250: {
         slidesPerView: 2
       },
@@ -68,7 +68,7 @@ $(document).ready(function () {
     }
   });
 
-  
+
   var swiperNews = new Swiper('.news_swiper', {
     slidesPerView: 3,
     spaceBetween: 24,
@@ -98,7 +98,7 @@ $(document).ready(function () {
     $('.gallery_block>div:nth-child(1) a').after($('.gallery_block>div:last-child a:last-child'))
   }
 
-/////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////
 
   $(window).scroll(function () {
     if ($(this).scrollTop() > $(window).height()) {
@@ -112,7 +112,7 @@ $(document).ready(function () {
     $("html, body").animate({ scrollTop: 0 }, 600);
     return false;
   });
- 
+
 
   $('.language_block').on('click', function (e) {
     e.preventDefault()
@@ -170,5 +170,13 @@ $(document).ready(function () {
   //   $('.home_faculty ul li a').removeClass('active')
   //   $(this).addClass('active')
   // })
-
+  $(document).on('click', '.toggle_password span', function () {
+    $(this).parent().toggleClass('show')
+    var x = document.getElementById("myInput");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  })
 });
