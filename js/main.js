@@ -67,6 +67,28 @@ $(document).ready(function () {
       },
     }
   });
+  
+  var swiperPartner = new Swiper('.home_partners_swiper', {
+    slidesPerView: 6,
+    spaceBetween: 24,
+    autoplay: {
+      delay: 17000
+    },
+    loop: true,
+    pagination: {
+      el: '.home_partners_swiper .swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    breakpoints: {
+      767: {
+        slidesPerView: 2
+      },
+      991: {
+        slidesPerView: 4
+      }
+    }
+  });
 
 
   var swiperNews = new Swiper('.news_swiper', {
