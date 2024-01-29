@@ -1,204 +1,70 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
-  var swiperGraduates = new Swiper('.graduates_swiper', {
-    slidesPerView: 3,
-    spaceBetween: 24,
-    navigation: {
-      nextEl: '.home_graduates .swiper-button-next',
-      prevEl: '.home_graduates .swiper-button-prev',
-    },
-    autoplay: {
-      delay: 90000
-    },
-    loop: true,
-    breakpoints: {
-      767: {
-        slidesPerView: 1
-      },
+  window.onload = function() {
+      document.body.classList.add('loaded');
+    AOS.init({
+        once: true
+      });
+      
+      // setTimeout(function(){
+      //   $('body.loaded .header_clone').css('opacity', '1')
+      // }, 2000)
+  }
+    /**********************************************HEADER-FIXED *****************************/
 
-      1250: {
-        slidesPerView: 2
-      },
+  var scroll = $(window).scrollTop();
+
+  if ($(window).width() > 992) {
+    $('.header_clone').html($('header .container').clone(true))
+    $('.header_clone').find('.hdr-top').remove()
+
+    if (scroll >= $(window).height()) {
+      $('.header_clone').addClass('fixed_header')
     }
-  });
-
-  var swiperCourses = new Swiper('.course_swiper', {
-    slidesPerView: 4,
-    spaceBetween: 24,
-    navigation: {
-      nextEl: '.home_courses .swiper-button-next',
-      prevEl: '.home_courses .swiper-button-prev',
-    },
-    autoplay: {
-      delay: 10300
-    },
-    loop: true,
-    breakpoints: {
-      767: {
-        slidesPerView: 1
-      },
-      991: {
-        slidesPerView: 2
-      }
-    }
-  });
-
-  var swiperTeachers = new Swiper('.teachers_swiper', {
-    slidesPerView: 4,
-    spaceBetween: 24,
-    autoplay: {
-      delay: 15300
-    },
-    loop: true,
-    breakpoints: {
-      767: {
-        slidesPerView: 1,
-        pagination: {
-          el: '.teachers_swiper .swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        },
-      },
-      991: {
-        slidesPerView: 2
-      },
-      1250: {
-        slidesPerView: 3
-      },
-    }
-  });
-  
-  var swiperPartner = new Swiper('.home_partners_swiper', {
-    slidesPerView: 6,
-    spaceBetween: 24,
-    autoplay: {
-      delay: 17000
-    },
-    loop: true,
-    pagination: {
-      el: '.home_partners_swiper .swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      767: {
-        slidesPerView: 2
-      },
-      991: {
-        slidesPerView: 4
-      }
-    }
-  });
-
-
-  var swiperNews = new Swiper('.news_swiper', {
-    slidesPerView: 3,
-    spaceBetween: 24,
-    autoplay: {
-      delay: 25000
-    },
-    loop: true,
-    breakpoints: {
-      767: {
-        slidesPerView: 1,
-        pagination: {
-          el: '.news_swiper .swiper-pagination',
-          type: 'bullets',
-          clickable: true
-        },
-      },
-      991: {
-        slidesPerView: 2
-      },
-      1250: {
-        slidesPerView: 3
-      },
-    }
-  });
-
-  if ($(window).width() < 768) {
-    $('.gallery_block>div:nth-child(1) a').after($('.gallery_block>div:last-child a:last-child'))
   }
 
-  /////////////////////////////////////////////////////////////////////////
+  $(window).scroll(function() {
 
-  $(window).scroll(function () {
-    if ($(this).scrollTop() > $(window).height()) {
-      $('.scrollup').addClass('showed');
-    } else {
-      $('.scrollup').removeClass('showed');
+    scroll = $(window).scrollTop();
+
+
+    /**********************************************HEADER-FIXED *****************************/
+    if ($(window).width() > 992) {
+      if (scroll >= $(window).height()) {
+        $('.header_clone').addClass('fixed_header')
+      } else {
+        $('.header_clone').removeClass('fixed_header')
+      }
     }
-  });
+    /**********************************************HEADER-FIXED *****************************/
 
-  $('.scrollup').click(function () {
-    $("html, body").animate({ scrollTop: 0 }, 600);
-    return false;
-  });
-
-
-  $('.language_block').on('click', function (e) {
-    e.preventDefault()
-    $(this).toggleClass('active')
   })
 
+  if ($(window).width() < 992) {
 
+    $('.toggle-menu-mobile').click(function() {
+      $('body').toggleClass('open_menu');
+      $(this).toggleClass('open');
+    });
 
-  $('[data-fancybox]').fancybox({
-    youtube: {
-      controls: 1,
-      showinfo: 1
-    },
-    vimeo: {
-      color: 'f00'
-    }
-  });
+    $('.header_mobile').append($('.hdr-bottom ul'))
 
-  $("body").click(function (e) {
-    if (
-      !$(e.target).is(
-        ".language_block *,.language_block"
-      )
-    ) {
-      $(".language_block").removeClass("active");
-    }
+    $('.robita_language').before($('.social-icons'))
 
-    if (
-      !$(e.target).is(
-        ".mobile__menu .right_block, .mobile__menu .right_block *"
-      )
-    ) {
-      $('.mobile__menu').removeClass('active')
-      $('body').removeClass('opened')
+    $('.header_mobile ul').append('<li class="contact_mobile"></li>')
 
-    }
-  });
+    $('.contact_mobile').html($('a.contact-hdr'))
 
-  $(document).on('click', '.open_sidebar', function () {
-    $('.mobile__menu').addClass('active')
-    $('body').addClass('opened')
-  })
+    $('.footer_link h3').on('click', function() {
 
-  $(document).on('click', '.mobile__menu .close', function () {
-    $('.mobile__menu').removeClass('active')
-    $('body').removeClass('opened')
-  })
+      $(this).parent().siblings().find('h3').removeClass('actived')
+      $(this).parent().siblings().find('ul').slideUp()
 
-  // if ($(window).width() < 1024) {
-  //   $('section.home_faculty .right__faculty .swiper-container').after($('section.home_faculty .all_faculty '))
-  // }
+      $(this).toggleClass('actived')
+      $(this).next().slideToggle()
 
-  // $(document).on('click', '.home_faculty ul li a', function (e) {
-  //   e.preventDefault();
-  //   $('.home_faculty ul li a').removeClass('active')
-  //   $(this).addClass('active')
-  // })
-  $(document).on('click', '.toggle_password span', function () {
-    $(this).parent().toggleClass('show')
-    var x = document.getElementById("myInput");
-    if (x.type === "password") {
-      x.type = "text";
-    } else {
-      x.type = "password";
-    }
-  })
-});
+    })
+
+  }
+
+})
