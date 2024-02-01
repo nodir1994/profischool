@@ -1,5 +1,5 @@
 var car = document.querySelector(".car_block");
-var section = document.querySelector("#third");
+var section = document.querySelector("#comfortabled");
 
 document.addEventListener("scroll", (e) => {
   if (window.scrollY > section.offsetTop && (window.scrollY - section.offsetTop)<window.innerHeight/2) {

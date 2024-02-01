@@ -4,8 +4,9 @@ $(document).ready(function () {
   });
   $(".menu_nav li").on("click", function () {
     $("body").removeClass("open");
+    console.log($(this).data('target'));
     $('html, body').animate({
-      scrollTop: $("footer").offset().top
+      scrollTop: $(''+$(this).data('target')+'').offset().top 
     });
   });
   
@@ -32,7 +33,7 @@ $(document).ready(function () {
     travel_distance = total_width - block_list_width + 20;
 
   var scene = new ScrollMagic.Scene({
-    triggerElement: "#second",
+    triggerElement: "#advantaged",
     duration: "300%",
     triggerHook: 0,
   })
